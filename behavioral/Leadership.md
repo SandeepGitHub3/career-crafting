@@ -1,7 +1,5 @@
 # Leadership Stories
 
----
-
 ## Story 1: Deliveroo – Restaurant Churn Project
 
 **Situation**  
