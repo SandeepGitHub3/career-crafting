@@ -1,5 +1,9 @@
 # Collaboration & Teamwork
 
+## Questions
+1. Give an example of a time when you worked well in a team.  
+2. Tell me about a time when you had to collaborate with others to chieve a goal.
+   
 ## Story 1: Deliveroo – GDPR Data Purge Framework
 
 **Situation**  
