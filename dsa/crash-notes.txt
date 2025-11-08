@@ -1,0 +1,60 @@
+JAVA STRING FUNCTIONS - QUICK NOTES
+
+---------------------------------------------------
+CREATION & BASICS
+---------------------------------------------------
+String s = "abc";                // literal
+String s = new String("abc");    // explicit creation
+s.length();                      // length of string
+s.charAt(i);                     // get character at index
+
+---------------------------------------------------
+SUBSTRING & SEARCH
+---------------------------------------------------
+s.substring(begin);              // substring from begin to end
+s.substring(b, e);               // substring from b to e-1
+s.indexOf(ch);                   // first occurrence of char
+s.indexOf(str);                  // first occurrence of substring
+s.lastIndexOf(ch);               // last occurrence
+s.contains("abc");               // true if substring present
+s.startsWith("pre");             // check prefix
+s.endsWith("fix");               // check suffix
+
+---------------------------------------------------
+SPLIT, JOIN & REPLACE
+---------------------------------------------------
+s.split(" ");                    // split by delimiter
+String.join("-", arr);           // join array by delimiter
+s.replace('a','x');              // replace char
+s.replace("app","xyz");          // replace substring
+s.replaceAll(regex, repl);       // regex replace all
+s.replaceFirst(regex, repl);     // regex replace first
+
+---------------------------------------------------
+CASE, TRIM & COMPARE
+---------------------------------------------------
+s.toLowerCase();                 // lowercase
+s.toUpperCase();                 // uppercase
+s.trim();                        // remove leading/trailing spaces
+s.strip();                       // unicode-aware trim (Java 11+)
+s.equals(t);                     // equals
+s.equalsIgnoreCase(t);           // equals ignoring case
+s.compareTo(t);                  // lexicographic compare
+
+---------------------------------------------------
+CONVERSION
+---------------------------------------------------
+String.valueOf(x);               // any type -> string
+Integer.parseInt(s);             // string -> int
+s.toCharArray();                 // string -> char array
+new String(charArray);           // char array -> string
+
+---------------------------------------------------
+STRINGBUILDER (for DSA)
+---------------------------------------------------
+StringBuilder sb = new StringBuilder();
+sb.append(x);                    // append
+sb.insert(i, x);                 // insert
+sb.delete(b, e);                 // delete
+sb.reverse();                    // reverse
+sb.toString();                   // to string
