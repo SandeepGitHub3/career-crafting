@@ -58,3 +58,17 @@ sb.insert(i, x);                 // insert
 sb.delete(b, e);                 // delete
 sb.reverse();                    // reverse
 sb.toString();                   // to string
+
+---------------------------------------------------
+COLLECTIONS (for DSA)
+---------------------------------------------------
+Collections.reverse()           //reverse the current order of elements in a specified List
+
+---------------------------------------------------
+PRIORITY QUEUE - Use for HEAPS
+---------------------------------------------------
+PriorityQueue<Integer> minHeap = new PriorityQueue<>();                            // For MIN Heap
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder())   // For Max Heap
+minHeap.add()                                                                      // Add elements to Heap
+minHeap.poll()                                                                     // Remove elements
+
