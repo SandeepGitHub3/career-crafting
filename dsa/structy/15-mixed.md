@@ -48,5 +48,26 @@ class Source {
 - Time: O(nw)
 - Space: O(nw)
 ```
+## 9. Positioning Plants
 
-2. 
+<img width="738" height="696" alt="Positioning Plants Problem" src="https://github.com/user-attachments/assets/d0404940-bb59-4bd8-b036-3ae595209596" />
+
+---
+### Recursion Tree - Brute Force approach
+<img width="572" height="425" alt="Recursion Tree" src="https://github.com/user-attachments/assets/6aa2477e-cd8b-453b-9b2e-6927f6b9bd37" />
+
+---
+### Overlapping Subproblems
+
+<img width="545" height="420" alt="Overlapping Subproblems 1" src="https://github.com/user-attachments/assets/edcadda0-86cc-47c8-972e-d01c03b748e4" />
+
+<img width="517" height="425" alt="Overlapping Subproblems 2" src="https://github.com/user-attachments/assets/2853edc5-baeb-4442-bdb2-ffc587373f82" />
+
+---
+
+### Final Solution
+<img width="953" height="461" alt="Solution" src="https://github.com/user-attachments/assets/e63ac178-c1e1-4998-9e9f-b44c3b330886" />
+
+
+
+ 
