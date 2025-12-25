@@ -68,6 +68,20 @@ class Source {
 ### Final Solution
 <img width="953" height="461" alt="Solution" src="https://github.com/user-attachments/assets/e63ac178-c1e1-4998-9e9f-b44c3b330886" />
 
+---
+## 13. breaking boundaries
+
+<img width="735" height="601" alt="image" src="https://github.com/user-attachments/assets/f281e17b-994d-45c5-8881-2a19a4403fc3" />
+
+---
+### Approach
+<img src="https://github.com/user-attachments/assets/b2fa25cb-ab6c-48b8-8460-dfabfacd826c" /><br>
+<img src="https://github.com/user-attachments/assets/e161e6b2-eb12-4195-b17b-ce83237f34b3" /><br>
+<img src="https://github.com/user-attachments/assets/fe019352-b603-4120-827b-4139ac61123a" /><br>
+<img src="https://github.com/user-attachments/assets/9e3897a8-0c8d-4cc6-876d-28393a011b69" />
+---
+### Final Solution
+<img width="569" height="403" alt="image" src="https://github.com/user-attachments/assets/a10bd5a2-c510-470a-a849-b813fc51283a" />
 
 
  
