@@ -146,7 +146,44 @@ public static List<List<String>> createCombinations(List<String> items, int k) {
     return allCombos;
   }
 ```
+### grocery budget
+Write a method, groceryBudget, that takes in groceryList and a number budget. Every item in groceryList is a pair containing the item name and price. Your method should return a 2D list of all possible ways to purchase items without spending more than the given budget.
 
+The order of the items in the return value does not matter.
+
+You cannot purchase an item more than once. You do not have to spend the budget fully.
+
+- Same as last problem with minor tweak around budget
+
+```
+public static List<List<String>> groceryBudget(List<Map.Entry<String, Integer>> groceryList, int budget) {
+    
+    // base case: with nothing left to consider, the one valid plan is buying nothing
+    if(groceryList.isEmpty()) return List.of(List.of());
+
+   List<List<String>> allCombos = new ArrayList<>(); 
+   Map.Entry<String, Integer> first = groceryList.get(0);
+   List<Map.Entry<String, Integer>> rest = groceryList.subList(1, groceryList.size());
+
+
+    // branch 1: buy this item — only legal if we can afford it
+    if (first.getValue() <= budget) {
+        for (List<String> combo : groceryBudget(rest, budget - first.getValue())) {
+            List<String> withFirst = new ArrayList<>();
+            withFirst.add(first.getKey());
+            withFirst.addAll(combo);
+            allCombos.add(withFirst);
+        }
+    }
+    
+    allCombos.addAll(groceryBudget(rest,budget));
+    return allCombos;
+  }
+
+// n = # of groceries
+// Time: ~O(2^n)
+// Space: ~O(2^n)
+```
 
 
 
