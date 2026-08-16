@@ -338,6 +338,69 @@ Source.parentheticalPossibilities("(qr)ab(stu)c"); // ->
   }
 ```
 
+### substituting synonyms
+Write a method, substitutingSynonyms, that takes in a sentence and a map as arguments. The map contains words as keys whose values are arrays containing synonyms. The method should return a list containing all possible sentences that can be formed by substituting words of the sentence with their synonyms.
+
+You may return the possible sentences in any order, as long as you return all of them.
+
+String sentence = "follow the yellow brick road";
+Map<String, List<String>> synonyms = Map.of(
+  "follow", List.of("chase", "pursue"),
+  "yellow", List.of("gold", "amber", "lemon")
+);
+
+Source.substituteSynonyms(sentence, synonyms);
+// [
+//   "chase the gold brick road",
+//   "chase the amber brick road",
+//   "chase the lemon brick road",
+//   "pursue the gold brick road",
+//   "pursue the amber brick road",
+//   "pursue the lemon brick road"
+// ]
+
+<img width="481" height="305" alt="image" src="https://github.com/user-attachments/assets/88c0921d-6d2d-47a1-80e8-7bf96b945f6c" />
+<img width="250" height="121" alt="image" src="https://github.com/user-attachments/assets/5b8306f0-e7f3-4cd2-aef9-b960b9125f08" />
+
+```
+public static List<String> substituteSynonyms(String sentence, Map<String, List<String>> synonyms) {
+    List<String> words = Arrays.asList(sentence.split(" "));
+    List<List<String>> synonymWords = substituteSynonyms(synonyms,words,0);
+
+    List<String> finalSentences = new ArrayList<>();
+    for(List<String> synonymWord: synonymWords){
+      finalSentences.add(String.join(" ", synonymWord));
+    }
+    return finalSentences;
+  }
+
+  private static List<List<String>> substituteSynonyms(Map<String, List<String>> synonyms, List<String> words , int index) {
+    if(index == words.size()) return List.of(List.of());
+
+    List<List<String>> allResults = new ArrayList<>();
+    List<List<String>> allSubResults = substituteSynonyms(synonyms,words,index+1);
+    
+    if(synonyms.containsKey(words.get(index))){
+      for(String synonym : synonyms.get(words.get(index))){
+        for(List<String> subResult: allSubResults){
+          List<String> newRes = new ArrayList<>();
+          newRes.add(synonym);
+          newRes.addAll(subResult);
+          allResults.add(newRes);
+        }
+      }
+    }else{
+      for(List<String> subResult: allSubResults){
+        List<String> newRes = new ArrayList<>();
+         newRes.add(words.get(index));
+         newRes.addAll(subResult);
+         allResults.add(newRes);
+      }
+    }
+    return allResults;
+  }
+```
+
 
 
 
