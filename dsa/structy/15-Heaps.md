@@ -69,6 +69,56 @@ If the Sibling Subtress are swapped , it is still a min Heap.
   }
 ```
 
+### Heap deletion
+
+
+
+```
+ public Double extractMin() {
+      if (this.isEmpty()) {
+        return null;
+      }
+
+      if (this.size() == 1) {
+        return this.list.remove(this.list.size() - 1);
+      }
+
+      Double value = this.list.get(0);
+      Double lastVal = this.list.remove(this.list.size() - 1);
+      this.list.set(0, lastVal);
+      this.siftDown(0);
+      return value;
+    }
+
+ public void siftDown(int idx) {
+      int currentIdx = idx;
+      while (currentIdx < this.size() - 1) {
+        int leftChildIdx = currentIdx * 2 + 1;
+        int rightChildIdx = currentIdx * 2 + 2;
+        
+        double leftChildVal = leftChildIdx >= this.size() ? Double.POSITIVE_INFINITY : this.list.get(leftChildIdx);
+        double rightChildVal = rightChildIdx >= this.size() ? Double.POSITIVE_INFINITY : this.list.get(rightChildIdx);
+        
+        double smallerChildVal = leftChildVal < rightChildVal ? leftChildVal : rightChildVal;
+        int smallerChildIdx = leftChildVal < rightChildVal ? leftChildIdx : rightChildIdx;
+
+        if (this.list.get(currentIdx) > smallerChildVal) {
+          this.swap(currentIdx, smallerChildIdx);
+          currentIdx = smallerChildIdx;
+        } else {
+          break;
+        }
+      } 
+    }
+
+  public void swap(int idx1, int idx2) {
+      Double temp = this.list.get(idx1);
+      this.list.set(idx1, this.list.get(idx2));
+      this.list.set(idx2, temp);
+    }
+```
+
+
 
 
 
