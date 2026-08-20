@@ -18,6 +18,68 @@ If the Sibling Subtress are swapped , it is still a min Heap.
 <img width="978" height="498" alt="image" src="https://github.com/user-attachments/assets/4b226e32-9670-43e8-aa6a-37afdfdbd4a2" />
 <img width="684" height="472" alt="image" src="https://github.com/user-attachments/assets/af373d8a-7e16-478a-80d6-792c09b4b540" />
 
+### Heap Insertion
+<img width="332" height="155" alt="image" src="https://github.com/user-attachments/assets/04fd3350-a29b-40fb-ad2d-effab75c4214" />. 
+
+<img width="666" height="409" alt="image" src="https://github.com/user-attachments/assets/6ce1075f-446b-49c3-bdd0-450b45113fef" />
+<img width="644" height="415" alt="image" src="https://github.com/user-attachments/assets/28d68453-8472-4523-97e6-f7c54ebf09f3" />
+<img width="399" height="212" alt="image" src="https://github.com/user-attachments/assets/8b3379b5-2a89-4fe9-8abc-961ca962cde7" />
+<img width="608" height="295" alt="image" src="https://github.com/user-attachments/assets/2409fad8-45c6-4b6f-923b-5211cb5d31e7" />
+<img width="609" height="259" alt="image" src="https://github.com/user-attachments/assets/bf7048ac-2520-42ea-8ea0-8f62f5126c45" />
+<img width="596" height="273" alt="image" src="https://github.com/user-attachments/assets/08d18dc5-ea63-4cff-8379-349283e43ddf" />
+
+```
+ static class MinHeap {
+    public List<Double> list;
+
+    public MinHeap() {
+      list = new ArrayList<>();
+    }
+
+    public int size() {
+      return list.size();
+    }
+
+    public boolean isEmpty() {
+      return list.size() == 0;
+    }
+
+    public void insert(Double val) {
+      list.add(val);
+      siftUp(list.size()-1);
+    }
+
+    private void siftUp(int index){
+      while(index>0){
+        int parentIndex = Math.abs((index-1)/2);
+        if(list.get(index)<list.get(parentIndex)){
+          swap(parentIndex,index);
+          index = parentIndex;
+        }else{
+          break;
+        }
+      }
+    }
+
+   private void swap(int parentIndex, int currIndex){
+      Double tmp = list.get(parentIndex);
+      list.set(parentIndex,list.get(currIndex));
+      list.set(currIndex,tmp);
+    }
+  }
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
