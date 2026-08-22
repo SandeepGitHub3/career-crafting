@@ -1,4 +1,17 @@
-### Intro
+# Heaps
+
+## Index
+- [Intro](#intro)
+- [Tips](#tips)
+- [Problems](#problems)
+  - [1. Heap Insertion](#1-heap-insertion)
+  - [2. Heap Deletion](#2-heap-deletion)
+  - [3. Kth Largest Element](#3-kth-largest-element)
+  - [4. K Smallest Elements](#4-k-smallest-elements)
+
+---
+
+## Intro
 
 **What is a Heap?**
 - binary tree data structure
@@ -32,19 +45,51 @@ If the Sibling Subtress are swapped, it is still a min Heap.
 <img width="978" height="498" alt="image" src="https://github.com/user-attachments/assets/4b226e32-9670-43e8-aa6a-37afdfdbd4a2" />
 <img width="684" height="472" alt="image" src="https://github.com/user-attachments/assets/af373d8a-7e16-478a-80d6-792c09b4b540" />
 
-#### First 2 problems show how to implement a Heap, Interviews most likely do not need this implmentation. For Interview check how to Use Java Priority Queues for Heaps. (Problem 3 and 4)
+---
 
-### Heap Insertion
-<img width="332" height="155" alt="image" src="https://github.com/user-attachments/assets/04fd3350-a29b-40fb-ad2d-effab75c4214" />. 
+## Tips
+
+- The first 2 problems (Heap Insertion, Heap Deletion) show how to **implement** a heap from scratch — interviews most likely don't require this. For interviews, use **Java's `PriorityQueue`** for heaps (see Problems 3 and 4).
+- **Min heap vs Max heap:** a min heap's `extractMin()` removes the smallest item; a max heap's `extractMax()` removes the largest. So if you want the **smaller** numbers to remain, use a **max heap** (you keep evicting the max); if you want the **larger** numbers to remain, use a **min heap** (you keep evicting the min).
+
+---
+
+## Problems
+
+### 1. Heap Insertion
+
+**How to represent a heap:** as an **array** ✔ (not a node/pointer class ✘).
+
+<img width="332" height="155" alt="image" src="https://github.com/user-attachments/assets/04fd3350-a29b-40fb-ad2d-effab75c4214" />
+
+**Array indexing:** for a node at index `i` → left child = `2i + 1`, right child = `2i + 2`.
 
 <img width="666" height="409" alt="image" src="https://github.com/user-attachments/assets/6ce1075f-446b-49c3-bdd0-450b45113fef" />
+
+**Parent formula:** for index `i` → parent = `floor((i - 1) / 2)`.
+
 <img width="644" height="415" alt="image" src="https://github.com/user-attachments/assets/28d68453-8472-4523-97e6-f7c54ebf09f3" />
+
+**Heap Insertion steps:**
+- Add the new node to the left-most open position of the bottom level.
+- Min heap: **"sift up"** the new node while it's less than its parent.
+- Max heap: **"sift up"** the new node while it's greater than its parent.
+
 <img width="399" height="212" alt="image" src="https://github.com/user-attachments/assets/8b3379b5-2a89-4fe9-8abc-961ca962cde7" />
+
+**Worked example** — inserting `8` into `[7, 11, 10, ...]`: since child (8) < parent (11), swap them.
+
 <img width="608" height="295" alt="image" src="https://github.com/user-attachments/assets/2409fad8-45c6-4b6f-923b-5211cb5d31e7" />
+
+After the swap, `8` sits above `11` — keep checking upward against the next parent (`7`).
+
 <img width="609" height="259" alt="image" src="https://github.com/user-attachments/assets/bf7048ac-2520-42ea-8ea0-8f62f5126c45" />
+
+`8` is not less than `7`, so it stops — this repeated bubbling is **"sift up" / "percolate up"**.
+
 <img width="596" height="273" alt="image" src="https://github.com/user-attachments/assets/08d18dc5-ea63-4cff-8379-349283e43ddf" />
 
-```
+```java
  static class MinHeap {
     public List<Double> list;
 
@@ -85,11 +130,11 @@ If the Sibling Subtress are swapped, it is still a min Heap.
   }
 ```
 
-### Heap deletion
+---
 
+### 2. Heap Deletion
 
-
-```
+```java
  public Double extractMin() {
       if (this.isEmpty()) {
         return null;
@@ -134,24 +179,22 @@ If the Sibling Subtress are swapped, it is still a min Heap.
     }
 ```
 
+---
 
-### 
+### 3. Kth Largest Element
 
-kth-largest
-Write a method, kthLargest, that takes in a list of numbers and a value, k. The method should return the k-th largest element of the list.
-
-kthLargest(List.of(9,2,6,6,1,5,8,7), 3); // -> 7
-
-
-Solution 1: Using Sorting
-<img width="585" height="365" alt="image" src="https://github.com/user-attachments/assets/dcdf98b6-26c0-4074-a1a0-a4e0d49a75ec" />
-
-Ideal Solution : Using Heap
-We do not need to fully sort. Parial Sorting using Heap is sufficient, since we can get better Time Complexity with heaps
-<img width="662" height="130" alt="image" src="https://github.com/user-attachments/assets/97a602af-bbca-41b1-8c99-e67b2fcffc23" />
-<img width="662" height="412" alt="image" src="https://github.com/user-attachments/assets/7de7be3a-b21b-484c-b1c0-579720d40828" />
+Write a method, `kthLargest`, that takes in a list of numbers and a value, `k`. The method should return the k-th largest element of the list.
 
 ```
+kthLargest(List.of(9,2,6,6,1,5,8,7), 3); // -> 7
+```
+
+
+**Solution 1: Using Sorting** — Time `O(n log n)`, Space `O(n)`: fully sort, then index from the end.
+
+<img width="585" height="365" alt="image" src="https://github.com/user-attachments/assets/dcdf98b6-26c0-4074-a1a0-a4e0d49a75ec" />
+
+```java
 public static int kthLargest(List<Integer> numbers, int k) {
     List<Integer> sortedNumbers = new ArrayList<>(numbers);
     Collections.sort(sortedNumbers);
@@ -159,7 +202,15 @@ public static int kthLargest(List<Integer> numbers, int k) {
   }
 ```
 
-```
+**Ideal Solution: Using a Heap** — we don't need to **fully sort**; **partially sorting** with a heap is enough and gives a better time complexity.
+
+<img width="662" height="130" alt="image" src="https://github.com/user-attachments/assets/97a602af-bbca-41b1-8c99-e67b2fcffc23" />
+
+Sort: `O(n log n)` time, `O(n)` space. Heap: `O(n log k)` time, `O(k)` space (since `k ≤ n`) — keep a size-`k` **min heap** of the largest values seen so far; its root ends up being the k-th largest.
+
+<img width="662" height="412" alt="image" src="https://github.com/user-attachments/assets/7de7be3a-b21b-484c-b1c0-579720d40828" />
+
+```java
 public static int kthLargest(List<Integer> numbers, int k) {
     PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
@@ -174,15 +225,23 @@ public static int kthLargest(List<Integer> numbers, int k) {
   }
 ```
 
-### k-smallest
-Write a method that takes in a list of numbers and a value, k. The method should return the k smallest numbers in the list. The resulting list should be ordered from least to greatest.
+---
 
-kSmallest(List.of(8, 2, 7, -3, 5, 10), 3) ;
+### 4. K Smallest Elements
+
+Write a method that takes in a list of numbers and a value, `k`. The method should return the k smallest numbers in the list. The resulting list should be ordered from least to greatest.
+
+```
+kSmallest(List.of(8, 2, 7, -3, 5, 10), 3);
 // -> [-3, 2, 5]
+```
+
+
+Keep a size-`k` **max heap** (`k ≤ n`, `.insert()` / `.extractMax()`) — the largest of the "k smallest so far" sits at the root, ready to be evicted the moment a smaller number shows up.
 
 <img width="655" height="396" alt="image" src="https://github.com/user-attachments/assets/8b1eb310-b2a8-45a2-96a0-fd6a687ddd13" />
 
-```
+```java
 public static List<Integer> kSmallest(List<Integer> numbers, int k) {
     PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b) -> Integer.compare(b,a));
     
@@ -202,10 +261,4 @@ public static List<Integer> kSmallest(List<Integer> numbers, int k) {
   }
 ```
 
-
-#### TIP
-Min heap vs Max Heap
-Min head contains Extract Min while max heap contains extract max. so if we want smaller numbers use max heap since we will be removing max numbers and what remains is small numbers and viceversa.
-
-
-
+-----------------------
