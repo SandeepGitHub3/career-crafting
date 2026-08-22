@@ -1,5 +1,10 @@
 ### Intro
 
+1. What is a Heap
+- Binary Tree Datastructure
+- Stores Item
+- Maintains Order Between Items
+- Similar to Binary Search Tree
 <img width="604" height="258" alt="image" src="https://github.com/user-attachments/assets/ff8b14b0-3dee-405d-b872-7c47027d01f5" />
 <img width="1127" height="320" alt="image" src="https://github.com/user-attachments/assets/e896534f-0bb4-41dd-9f01-2fce11509ec4" />
 <img width="1009" height="413" alt="image" src="https://github.com/user-attachments/assets/ca4f5ff8-e9cd-40bd-bbc9-04f77825869b" />
