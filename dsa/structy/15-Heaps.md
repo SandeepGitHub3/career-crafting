@@ -18,6 +18,8 @@ If the Sibling Subtress are swapped , it is still a min Heap.
 <img width="978" height="498" alt="image" src="https://github.com/user-attachments/assets/4b226e32-9670-43e8-aa6a-37afdfdbd4a2" />
 <img width="684" height="472" alt="image" src="https://github.com/user-attachments/assets/af373d8a-7e16-478a-80d6-792c09b4b540" />
 
+#### First 2 problems show how to implement a Heap, Interviews most likely do not need this implmentation. For Interview check how to Use Java Priority Queues for Heaps. (Problem 3 and 4)
+
 ### Heap Insertion
 <img width="332" height="155" alt="image" src="https://github.com/user-attachments/assets/04fd3350-a29b-40fb-ad2d-effab75c4214" />. 
 
@@ -119,14 +121,77 @@ If the Sibling Subtress are swapped , it is still a min Heap.
 ```
 
 
+### 
+
+kth-largest
+Write a method, kthLargest, that takes in a list of numbers and a value, k. The method should return the k-th largest element of the list.
+
+kthLargest(List.of(9,2,6,6,1,5,8,7), 3); // -> 7
 
 
+Solution 1: Using Sorting
+<img width="585" height="365" alt="image" src="https://github.com/user-attachments/assets/dcdf98b6-26c0-4074-a1a0-a4e0d49a75ec" />
+
+Ideal Solution : Using Heap
+We do not need to fully sort. Parial Sorting using Heap is sufficient, since we can get better Time Complexity with heaps
+<img width="662" height="130" alt="image" src="https://github.com/user-attachments/assets/97a602af-bbca-41b1-8c99-e67b2fcffc23" />
+<img width="662" height="412" alt="image" src="https://github.com/user-attachments/assets/7de7be3a-b21b-484c-b1c0-579720d40828" />
+
+```
+public static int kthLargest(List<Integer> numbers, int k) {
+    List<Integer> sortedNumbers = new ArrayList<>(numbers);
+    Collections.sort(sortedNumbers);
+    return sortedNumbers.get(sortedNumbers.size() - k);
+  }
+```
+
+```
+public static int kthLargest(List<Integer> numbers, int k) {
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+    for (int num : numbers) {
+      minHeap.add(num);
+      if (minHeap.size() > k) {
+        minHeap.poll();
+      }
+    }
+
+    return minHeap.poll();
+  }
+```
+
+### k-smallest
+Write a method that takes in a list of numbers and a value, k. The method should return the k smallest numbers in the list. The resulting list should be ordered from least to greatest.
+
+kSmallest(List.of(8, 2, 7, -3, 5, 10), 3) ;
+// -> [-3, 2, 5]
+
+<img width="655" height="396" alt="image" src="https://github.com/user-attachments/assets/8b1eb310-b2a8-45a2-96a0-fd6a687ddd13" />
+
+```
+public static List<Integer> kSmallest(List<Integer> numbers, int k) {
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b) -> Integer.compare(b,a));
+    
+    for(int number: numbers){
+      maxHeap.add(number);
+      if(maxHeap.size()>k) 
+        maxHeap.poll();
+    }
+
+    List<Integer> result = new ArrayList<>();
+    while (maxHeap.size() > 0) {
+      result.add(maxHeap.poll());
+    }
+    
+    Collections.reverse(result);
+    return result;
+  }
+```
 
 
-
-
-
-
+#### TIP
+Min heap vs Max Heap
+Min head contains Extract Min while max heap contains extract max. so if we want smaller numbers use max heap since we will be removing max numbers and what remains is small numbers and viceversa.
 
 
 
