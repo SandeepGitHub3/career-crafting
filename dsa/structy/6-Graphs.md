@@ -4,7 +4,7 @@
 
 <img width="692" height="428" alt="image" src="https://github.com/user-attachments/assets/1958f552-085b-4229-86dd-8b481aa0ad34" />
 
-Graph representation:
+Graph representation:  
 <img width="731" height="446" alt="image" src="https://github.com/user-attachments/assets/0e761ea8-e92a-46e5-ac0f-dfe435e47c16" />
 
 Building Adjacency list from List of edges
@@ -27,13 +27,13 @@ public static Map<String, List<String>> buildGraph(List<List<String>> edges) {
   }
 ```
 
-Traversal:
+Traversal:  
 <img width="669" height="536" alt="image" src="https://github.com/user-attachments/assets/325b15b8-6ac9-4665-bf5f-dde26b103f4c" />
 
-DFS:
+DFS:  
 <img width="595" height="522" alt="image" src="https://github.com/user-attachments/assets/1b4d772c-2761-4d8e-85ed-fe45eb6d908b" />
 
-DFS Template:
+DFS Template:  
 ```
 public static void depthFirstPrintIterative(Map<String, List<String>> graph, String src) {
     Stack<String> stack = new Stack<>();
@@ -56,10 +56,10 @@ public static void depthFirstPrintIterative(Map<String, List<String>> graph, Str
   }
 ```
 
-BFS:
+BFS:  
 <img width="641" height="462" alt="image" src="https://github.com/user-attachments/assets/77815d01-4bef-46bb-9c4e-e80690bb79a6" />
 
-BFS Template:
+BFS Template:  
 ```
 public static void breadthFirstPrint(Map<String, List<String>> graph, String src) {
     ArrayDeque<String> queue = new ArrayDeque<>();
@@ -80,11 +80,11 @@ public static void breadthFirstPrint(Map<String, List<String>> graph, String src
 
 IMP - 
 - Directed graph (acyclic): no cycles possible, so no visited set needed.
-- Undirected graph: edges go both ways, so you can bounce back to the same node — need a visited set to avoid infinite loops.
+- Undirected graph: edges go both ways, so you can bounce back to the same node — need a visited set to avoid infinite loops.  
 
 <img width="561" height="361" alt="image" src="https://github.com/user-attachments/assets/f6eebcb1-7e09-423a-8d0b-fbff7a70e3a0" />
 
-Coulb use either DFS or BFS
+Could use either DFS or BFS.   
 <img width="382" height="265" alt="image" src="https://github.com/user-attachments/assets/d9cec061-776a-4f37-9e6f-55a46bf4384d" />
 
 ```
@@ -103,9 +103,9 @@ public static boolean hasPath(Map<String, List<String>> graph, String src, Strin
 
 #### has path - undirectedPath graph
 
-Since we could have cycle , we need to keep a track of visited nodes and make sure we do not visit them again
-<img width="259" height="295" alt="image" src="https://github.com/user-attachments/assets/81000b4f-cad6-4b37-ba0c-0547a02da0b7" />
-<img width="454" height="333" alt="image" src="https://github.com/user-attachments/assets/fc9886e3-7e00-4db2-9aa7-a67f4b1975b5" />
+Since we could have cycle , we need to keep a track of visited nodes and make sure we do not visit them again. 
+<img width="259" height="295" alt="image" src="https://github.com/user-attachments/assets/81000b4f-cad6-4b37-ba0c-0547a02da0b7" />. 
+<img width="454" height="333" alt="image" src="https://github.com/user-attachments/assets/fc9886e3-7e00-4db2-9aa7-a67f4b1975b5" />. 
 
 ```
 public static boolean undirectedPath(List<List<String>> edges, String nodeA, String nodeB) {
