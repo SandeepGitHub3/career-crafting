@@ -219,6 +219,48 @@ public static int largestComponent(Map<Integer, List<Integer>> graph) {
   }
 ```
 
+### shortest path in undirected graph
+ - Use BFS for Shortest path Algos.
+
+<img width="410" height="228" alt="image" src="https://github.com/user-attachments/assets/98247706-cfb8-4148-8ec6-ddcf3a7976a9" />. 
+
+```
+public static int shortestPath(List<List<String>> edges, String nodeA, String nodeB) {
+    HashMap<String, List<String>> graph = buildGraph(edges);
+    HashSet<String> visited = new HashSet<>();
+    ArrayDeque<SimpleEntry<String, Integer>> queue = new ArrayDeque<>();
+    queue.add(new SimpleEntry<>(nodeA, 0));
+    visited.add(nodeA);
+    while (!queue.isEmpty()) {
+      SimpleEntry<String, Integer> entry = queue.remove();
+      String node = entry.getKey();
+      int distance = entry.getValue();
+    
+      if (node == nodeB) {
+        return distance;
+      }
+      
+      for (String neighbor : graph.get(node)) {
+        if (!visited.contains(neighbor)) {
+          queue.add(new SimpleEntry<>(neighbor, distance + 1));
+          visited.add(neighbor);
+        }
+      }
+    }
+    
+    return -1;
+  }
+
+// e = number edges
+// Time: O(e)
+// Space: O(e)
+```
+
+
+
+
+
+
 
 
 
