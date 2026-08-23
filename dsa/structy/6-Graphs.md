@@ -317,6 +317,44 @@ public static int islandCount(List<List<String>> grid) {
 // Space: O(rc)
 ```
 
+### minimum island
+
+<img width="359" height="246" alt="image" src="https://github.com/user-attachments/assets/92118a9f-1bc4-41b4-b336-bc4d5048d026" />. 
+
+```
+public static int minimumIsland(List<List<String>> grid) {
+    Set<String> visited = new HashSet<>();
+    int minSize = Integer.MAX_VALUE;
+
+    for (int i = 0; i < grid.size(); i++) {
+      for (int j = 0; j < grid.get(i).size(); j++) {
+        if (grid.get(i).get(j).equals("L") && !visited.contains(getKey(i, j))) {
+          int size = dfs(grid, i, j, visited);
+          minSize = Math.min(minSize, size);
+        }
+      }
+    }
+    return minSize;
+  }
+
+ private static int dfs(List<List<String>> grid, int r, int c, Set<String> visited) {
+    if (r < 0 || c < 0 || r >= grid.size() || c >= grid.get(r).size()) return 0;
+    if (grid.get(r).get(c).equals("W")) return 0;
+    String key = getKey(r, c);
+    if (visited.contains(key)) return 0;
+    visited.add(key); // mark before recursing
+
+    return 1 + dfs(grid, r + 1, c, visited)
+             + dfs(grid, r - 1, c, visited)
+             + dfs(grid, r, c + 1, visited)
+             + dfs(grid, r, c - 1, visited);
+  }
+
+  private static String getKey(int i, int j) {
+    return i + "," + j;
+  }
+```
+
 
 
 
