@@ -1,5 +1,6 @@
 ### Intro
 
+- Nodes also know as Vertices. 
 <img width="375" height="455" alt="image" src="https://github.com/user-attachments/assets/ad72e192-5ee1-4e3a-913b-da25588564de" />
 
 <img width="692" height="428" alt="image" src="https://github.com/user-attachments/assets/1958f552-085b-4229-86dd-8b481aa0ad34" />
@@ -75,6 +76,13 @@ public static void breadthFirstPrint(Map<String, List<String>> graph, String src
   }
 ```
 
+Nodes & Edges. 
+No of edges = O(N^2) in worst case.    
+
+<img width="1088" height="457" alt="image" src="https://github.com/user-attachments/assets/7e7475f5-9ba0-4a82-b23c-c2d76bbd78fc" />. 
+<img width="430" height="164" alt="image" src="https://github.com/user-attachments/assets/8e5dac70-6052-412b-9183-c1a0d4bc2c86" />
+
+
 ### Problems
 #### has path - directed acyclic graph
 
@@ -145,6 +153,70 @@ public static boolean undirectedPath(List<List<String>> edges, String nodeA, Str
 // e = number edges
 // Time: O(e)
 // Space: O(e)
+```
+
+### connected components count. 
+- **Iterate** and **Traverse** through the nodes using DFS or BFS and keep track of visited nodes and count.   
+
+<img width="476" height="300" alt="image" src="https://github.com/user-attachments/assets/0f634eaf-11b0-443f-aab4-0ce6b26d5ca1" />. 
+<img width="543" height="330" alt="image" src="https://github.com/user-attachments/assets/c6e40740-914f-4634-a7d8-b2aca2daa8f3" />. 
+
+```
+public static int connectedComponentsCount(Map<Integer, List<Integer>> graph) {
+    HashSet<Integer> visited = new HashSet<>();
+    int count = 0;
+    for (int node : graph.keySet()) {
+      if (traverseComponent(graph, node, visited)) {
+        count += 1;
+      }
+    }
+    return count;
+  }
+  
+  public static boolean traverseComponent(Map<Integer, List<Integer>> graph, int node, HashSet<Integer> visited) {
+    if (visited.contains(node)) {
+      return false;
+    }
+    visited.add(node);
+    
+    for (int neighbor : graph.get(node)) {
+      traverseComponent(graph, neighbor, visited);
+    }
+    
+    return true;
+  }
+```
+
+#### largest component. 
+<img width="436" height="351" alt="image" src="https://github.com/user-attachments/assets/be022537-39ac-42b2-ba78-1c9f1785b340" />. 
+
+
+
+```
+public static int largestComponent(Map<Integer, List<Integer>> graph) {
+    HashSet<Integer> visited = new HashSet<>();
+    int maxSize = 0;
+    for (int node : graph.keySet()) {
+      int size = traverseSize(graph, node, visited);
+      if (size > maxSize) {
+        maxSize = size;
+      }
+    }
+    return maxSize;
+  }
+  
+  public static int traverseSize(Map<Integer, List<Integer>> graph, int node, HashSet<Integer> visited) {
+    if (visited.contains(node)) {
+      return 0;
+    }
+    visited.add(node);
+    
+    int count = 1;
+    for (int neighbor : graph.get(node)) {
+      count += traverseSize(graph, neighbor, visited);
+    }
+    return count;
+  }
 ```
 
 
