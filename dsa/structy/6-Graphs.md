@@ -355,6 +355,109 @@ public static int minimumIsland(List<List<String>> grid) {
   }
 ```
 
+### closest carrot
+
+<img width="242" height="261" alt="image" src="https://github.com/user-attachments/assets/4ae74866-bedc-4724-8dff-360d9e738c4a" />. 
+<img width="490" height="285" alt="image" src="https://github.com/user-attachments/assets/58011f7e-6a9d-4eb5-99a6-0e89d0fb060c" />. 
+
+```
+    public static int closestCarrot(List<List<String>> grid, int startRow, int startCol) {
+    int stepCount = 0;
+    Set<List<Integer>> visited = new HashSet<>();
+    Queue<List<Integer>> qu = new ArrayDeque<>();
+    qu.add(List.of(startRow,startCol,0));
+
+    while(!qu.isEmpty()){
+      List<Integer> node = qu.remove();
+      int r = node.get(0);
+      int c = node.get(1);
+      int count = node.get(2);
+
+      if(r >= 0 && c >= 0 && r < grid.size() && c < grid.get(r).size() && !visited.contains(List.of(r,c)) && !grid.get(r).get(c).equals("X")){
+        visited.add(List.of(r,c));
+        if(grid.get(r).get(c).equals("C")) return count;
+
+        qu.add(List.of(r+1,c,count+1));
+        qu.add(List.of(r-1,c,count+1));
+        qu.add(List.of(r,c+1,count+1));
+        qu.add(List.of(r,c-1,count+1));
+      } 
+    }
+    
+    return -1;
+  }
+```
+
+### best bridge - IMP - multi-source BFS.
+
+<img width="386" height="310" alt="image" src="https://github.com/user-attachments/assets/930beafe-e63d-41f7-8d6a-4a1ce1a3a988" />. 
+<img width="387" height="300" alt="image" src="https://github.com/user-attachments/assets/e8080d9a-cc83-4b83-ab21-f465eb3d7397" />. 
+
+```
+public static int bestBridge(List<List<String>> grid) {
+    
+    Set<List<Integer>> visited = new HashSet<>();
+    Queue<List<Integer>> qu = new ArrayDeque<>();
+    boolean foundFirst = false;
+    
+    for(int i=0; i<grid.size() && !foundFirst; i++){
+      for(int j=0; j<grid.get(i).size() && !foundFirst; j++){
+        if(grid.get(i).get(j).equals("L")){
+          markIsland(grid,i,j,visited,qu);
+          foundFirst = true;
+        }
+      }
+    }
+
+    List<List<Integer>> deltas = List.of(
+        List.of(1, 0),
+        List.of(-1, 0),
+        List.of(0, 1),
+        List.of(0, -1)
+      );
+
+    // BFS outward through water; stop the moment a neighbor is unvisited land
+    while (!qu.isEmpty()) {
+      List<Integer> cell = qu.poll();
+      int r = cell.get(0), c = cell.get(1), dist = cell.get(2);
+
+      for (List<Integer> d : deltas) {
+        int nr = r + d.get(0), nc = c + d.get(1);
+        if (nr < 0 || nc < 0 || nr >= grid.size() || nc >= grid.get(nr).size()) continue;
+
+        List<Integer> pos = List.of(nr, nc);
+        if (visited.contains(pos)) continue;
+
+        if (grid.get(nr).get(nc).equals("L")) return dist; // hit island 2
+
+        visited.add(pos);
+        qu.add(List.of(nr, nc, dist + 1));
+      }
+    }
+    return -1; // unreachable, problem guarantees two islands
+ 
+  }
+
+    
+
+  private static void markIsland(List<List<String>> grid,int r,int c,Set<List<Integer>> visited,Queue<List<Integer>> qu){
+    if(r<0 || c<0 || r>=grid.size() ||c>=grid.get(r).size()) return;
+    if(grid.get(r).get(c).equals("W")) return;
+    if(visited.contains(List.of(r,c))) return;
+
+    visited.add(List.of(r,c));
+    qu.add(List.of(r,c,0));
+    
+    markIsland(grid,r+1,c,visited,qu);
+    markIsland(grid,r-1,c,visited,qu);
+    markIsland(grid,r,c+1,visited,qu);
+    markIsland(grid,r,c-1,visited,qu);
+  }
+```
+
+
+
+
 
 
 
