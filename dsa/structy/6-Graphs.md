@@ -256,6 +256,66 @@ public static int shortestPath(List<List<String>> edges, String nodeA, String no
 // Space: O(e)
 ```
 
+### island count
+
+```
+List<List<String>> grid = List.of(
+  List.of("W", "L", "W", "W", "W"),
+  List.of("W", "L", "W", "W", "W"),
+  List.of("W", "W", "W", "L", "W"),
+  List.of("W", "W", "L", "L", "W"),
+  List.of("L", "W", "W", "L", "L"),
+  List.of("L", "L", "W", "W", "W")
+);
+
+Source.islandCount(grid); // -> 3
+```
+
+<img width="507" height="332" alt="image" src="https://github.com/user-attachments/assets/fbfa6c5b-4272-4735-9417-045188f201b6" />. 
+
+- Use be solved using Both DFS and BFS
+
+```
+public static int islandCount(List<List<String>> grid) {
+    int count = 0; 
+    Set<String> visited = new HashSet<>();
+    
+    for(int i=0 ; i<grid.size(); i++) {
+      for(int j=0 ; j<grid.get(i).size(); j++){
+        if(grid.get(i).get(j) == "L" && !visited.contains(getKey(i,j) )){
+          count = count+ 1;
+          dfs(grid,i,j,visited);
+        }
+      }
+    }
+    
+    return count;
+  }
+
+  private static void dfs(List<List<String>> grid, int r, int c, Set<String> visited){
+    if( r<0 || c<0 || r >= grid.size() || c >= grid.get(r).size()) return;
+    if( grid.get(r).get(c) == "W") return;
+    String key = getKey(r,c);
+    if(visited.contains(key)) return;
+    visited.add(key);
+
+    dfs(grid,r+1,c,visited);
+    dfs(grid,r-1,c,visited);
+    dfs(grid,r,c+1,visited);
+    dfs(grid,r,c-1,visited);
+
+    return;
+  }
+
+  private static String getKey(int i, int j){
+    return i+"---"+j;
+  }
+
+// r = number of rows
+// c = number of columns
+// Time: O(rc)
+// Space: O(rc)
+```
 
 
 
