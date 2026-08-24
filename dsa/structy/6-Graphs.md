@@ -3,18 +3,20 @@
 ## Index
 
 - [Intro](#intro)
-- [Problems](#problems)
-  - 1. [Has Path (Directed Acyclic Graph)](#1-has-path-directed-acyclic-graph)
-  - 2. [Has Path (Undirected Graph)](#2-has-path-undirected-graph)
-  - 3. [Connected Components Count](#3-connected-components-count)
-  - 4. [Largest Component](#4-largest-component)
-  - 5. [Shortest Path (Undirected Graph)](#5-shortest-path-undirected-graph)
-  - 6. [Island Count](#6-island-count)
-  - 7. [Minimum Island](#7-minimum-island)
-  - 8. [Closest Carrot](#8-closest-carrot)
-  - 9. [Best Bridge (Multi-source BFS)](#9-best-bridge-multi-source-bfs)
-  - 10. [Cycle Detection (Directed Graph)](#10-cycle-detection-directed-graph)
-  - 11. [Prereqs Possible](#11-prereqs-possible)
+  
+**Problem list:**
+ 
+1. [Has Path (Directed Acyclic Graph)](#1-has-path-directed-acyclic-graph)
+2. [Has Path (Undirected Graph)](#2-has-path-undirected-graph)
+3. [Connected Components Count](#3-connected-components-count)
+4. [Largest Component](#4-largest-component)
+5. [Shortest Path (Undirected Graph)](#5-shortest-path-undirected-graph)
+6. [Island Count](#6-island-count)
+7. [Minimum Island](#7-minimum-island)
+8. [Closest Carrot](#8-closest-carrot)
+9. [Best Bridge (Multi-source BFS)](#9-best-bridge-multi-source-bfs)
+10. [Cycle Detection (Directed Graph)](#10-cycle-detection-directed-graph)
+11. [Prereqs Possible](#11-prereqs-possible)
 
 ---
 
