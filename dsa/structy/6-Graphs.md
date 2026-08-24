@@ -455,6 +455,42 @@ public static int bestBridge(List<List<String>> grid) {
   }
 ```
 
+### Cycle detected- Directed Graph. 
+
+<img width="540" height="293" alt="image" src="https://github.com/user-attachments/assets/dd2d1caa-258c-4763-81e8-aadbb06e299a" />. 
+
+```
+public static boolean hasCycle(Map<String, List<String>> graph) {   
+    HashSet<String> visited = new HashSet<>();
+    for(String node: graph.keySet()){
+      if(hasCycle(graph,node,new HashSet<>(),visited))
+        return true;
+    }
+    return false;
+  }
+
+  private static boolean hasCycle(Map<String, List<String>> graph, String node,HashSet<String> visiting,HashSet<String> visited){
+    if(visiting.contains(node)) return true; //cycle detected
+    if(visited.contains(node)) return false;
+
+    visiting.add(node);
+
+    for(String neighbour: graph.get(node)){
+      if(hasCycle(graph,neighbour,visiting,visited)){
+        return true;
+      }
+    }
+
+    visiting.remove(node);
+    visited.add(node);
+    return false;
+  }
+// n = number of nodes
+// e = number of edges
+// Time: O(e)
+// Space: O(n)
+```
+
 
 
 
