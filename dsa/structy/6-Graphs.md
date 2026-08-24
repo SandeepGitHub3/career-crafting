@@ -491,6 +491,70 @@ public static boolean hasCycle(Map<String, List<String>> graph) {
 // Space: O(n)
 ```
 
+### prereqs possible
+Write a method, prereqsPossible, that takes in a number of courses (n) and prerequisites as arguments. Courses have ids ranging from 0 through n - 1. A single prerequisite of List.of(A, B) means that course A must be taken before course B. The method should return a boolean indicating whether or not it is possible to complete all courses.
+
+```
+int numCourses = 6;
+List<List<Integer>> prereqs = List.of(
+  List.of(0, 1),
+  List.of(2, 3),
+  List.of(0, 2),
+  List.of(1, 3),
+  List.of(4, 5)
+);
+Source.prereqsPossible(numCourses, prereqs); // -> true
+```
+
+- The problem boils down to detecting cycles in Directed graph.
+
+- <img width="421" height="185" alt="image" src="https://github.com/user-attachments/assets/e783feb1-c7a8-4078-9b34-fdf95dbf4c8c" />
+- <img width="419" height="249" alt="image" src="https://github.com/user-attachments/assets/8b4fa85e-4d8c-4a8b-8394-7b9ebe7304e4" />
+- <img width="544" height="296" alt="image" src="https://github.com/user-attachments/assets/b2a365a4-ab3c-47ca-b27a-e6f5873fa143" />
+
+```
+public static boolean prereqsPossible(int numCourses, List<List<Integer>> prereqs) {
+    Map<Integer, List<Integer>> gr = buildGraph(numCourses, prereqs);
+    
+    HashSet<Integer> visited = new HashSet<>();
+
+    for(int i=0; i<numCourses; i++){
+       if(hasCycle(gr,i,new HashSet<>(),visited))
+         return false;
+    }
+    
+    return true;
+  }
+
+  private static boolean hasCycle(Map<Integer, List<Integer>> gr, int node, HashSet<Integer> visiting, HashSet<Integer> visited){
+    if(visiting.contains(node)) return true;
+    if(visited.contains(node)) return false;
+
+    visiting.add(node);
+
+    for(Integer neighbour: gr.get(node)){
+      if(hasCycle(gr,neighbour,visiting,visited))
+        return true;
+    }
+    visiting.remove(node);
+    visited.add(node);
+    return false;
+  }
+  
+  private static Map<Integer, List<Integer>> buildGraph(int numCourses, List<List<Integer>> prereqs) {
+    Map<Integer, List<Integer>> map = new HashMap<>();
+    
+    for(int i=0; i<numCourses; i++){
+        map.put(i,new ArrayList<>());
+    }
+    
+    for (List<Integer> prereq : prereqs) {
+      map.get(prereq.get(0)).add(prereq.get(1));
+    }
+    
+    return map;
+  }
+```
 
 
 
