@@ -621,3 +621,59 @@ private static Map<Integer, List<Integer>> buildGraph(int numCourses, List<List<
     return map;
 }
 ```
+
+### 12. knight attack
+
+Source.knightAttack(8, 1, 1, 2, 2); // -> 2
+
+- Use BFS to find the Shortest Path.
+- Keep track of the no of steps.
+  
+- Possible Move Options for Knight. 
+<img width="292" height="291" alt="image" src="https://github.com/user-attachments/assets/2f1ef622-f5bf-45ed-b7b8-921e43dd4f2b" />
+<img width="469" height="345" alt="image" src="https://github.com/user-attachments/assets/480b8423-8869-4bd3-89ca-6da1de7833cf" />
+
+
+```
+public static int knightAttack(int n, int kr, int kc, int pr, int pc) {
+    Queue<List<Integer>> qu = new ArrayDeque<>();
+    Set<List<Integer>> visited = new HashSet<>();
+    qu.add(List.of(kr,kc,0));
+
+    List<List<Integer>> positions = List.of(
+      List.of(1,2),
+      List.of(-1,2),
+      List.of(-1,-2),
+      List.of(1,-2),
+      List.of(2,1),
+      List.of(-2,1),
+      List.of(-2,-1),
+      List.of(2,-1)
+    );
+
+    while(!qu.isEmpty()){
+      List<Integer> node = qu.remove();
+      int cKr = node.get(0);
+      int cKc = node.get(1);
+      int dist = node.get(2);
+
+      if(cKr == pr && cKc == pc) return dist;
+
+      for(List<Integer> pos : positions){
+        int r = cKr + pos.get(0);
+        int c = cKc + pos.get(1);
+        if(!visited.contains(List.of(r,c)) && isWithinBounds(n,r,c)){
+          qu.add(List.of(r,c,dist+1));
+          visited.add(List.of(r,c));
+        }  
+      }
+    }
+    
+    return -1;
+  }
+
+  private static boolean isWithinBounds(int n, int r, int c){
+      if( r<0 || c<0 || r>=n || c>=n) return false;
+      return true;
+  }
+```
