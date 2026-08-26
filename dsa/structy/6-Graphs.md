@@ -677,3 +677,40 @@ public static int knightAttack(int n, int kr, int kc, int pr, int pc) {
       return true;
   }
 ```
+
+### 13 can color - Bipartate Graphs
+
+- Use Classic DFS
+
+<img width="373" height="295" alt="image" src="https://github.com/user-attachments/assets/67e3dc22-d7fa-4317-9a06-caf6924de5d1" />
+
+```  public static boolean canColor(Map<String, List<String>> graph) {
+    Map<String,String> visited = new HashMap<>();
+    
+    for(String key: graph.keySet()){
+       if(!visited.containsKey(key) &&!canColor(graph,key,"Red",visited))
+          return false;   
+    }
+    return true;
+  }
+
+  private static boolean canColor(Map<String, List<String>> graph,String node, String color, Map<String,String> visited){
+    
+    if(visited.containsKey(node)){
+      return visited.get(node).equals(color);
+    }
+
+    visited.put(node,color);
+
+    String neighbourColor = color.equals("Red")? "Blue":"Red";
+    
+    for(String neighbour: graph.get(node)){
+      if(!canColor(graph,neighbour,neighbourColor,visited))
+        return false;
+    }
+    return true;
+  }
+// n = number of nodes
+// Time: O(n^2)
+// Space: O(n)
+```
