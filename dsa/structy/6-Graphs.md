@@ -714,3 +714,21 @@ public static int knightAttack(int n, int kr, int kc, int pr, int pc) {
 // Time: O(n^2)
 // Space: O(n)
 ```
+
+### 14 - tolerant teams - Bipartite
+
+<img width="409" height="231" alt="image" src="https://github.com/user-attachments/assets/f72fb730-3bf1-40f0-acd2-fc3fa8b37326" />
+
+<img width="430" height="397" alt="image" src="https://github.com/user-attachments/assets/cab04edc-a01d-4344-bda0-b530d6700eb9" />
+
+```
+Source.tolerantTeams(List.of(
+  List.of("philip", "seb"),
+  List.of("raj", "nader")
+)); // -> true
+
+```
+- Same code as previous problem, just additonal step of converting the list of rivalries into Adjacency list.
+
+
+
