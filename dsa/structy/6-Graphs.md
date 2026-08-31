@@ -731,21 +731,22 @@ Source.tolerantTeams(List.of(
 - Same code as previous problem, just additonal step of converting the list of rivalries into Adjacency list.
 
 ### 15 - rare routing
+#### Pattern - Cycle Detection in Undirected Graph + Connectivity Check
 Write a method, rareRouting, that takes in a number of cities (n) and a two dimensional List where each sublist represents a direct road that connects a pair of cities. The method should return a boolean indicating whether or not there exists a unique route for every pair of cities. A route is a sequence of roads that does not visit a city more than once.
 
 Cities will be numbered 0 to n - 1.
 
 You can assume that all roads are two-way roads. This means if there is a road between A and B, then you can use that road to go from A to B or go from B to A.  
 
-- <img width="174" height="221" alt="image" src="https://github.com/user-attachments/assets/4f6d83a8-e980-4d9e-9853-4e04c20f8f9d" />.
-- <img width="188" height="224" alt="image" src="https://github.com/user-attachments/assets/780ec737-a0f8-434d-8b72-49bcae1344ce" />.
-- <img width="274" height="232" alt="image" src="https://github.com/user-attachments/assets/b94ac7ed-f5b0-4d8f-8b3d-5dd98f17f8d4" />
+<img width="174" height="221" alt="image" src="https://github.com/user-attachments/assets/4f6d83a8-e980-4d9e-9853-4e04c20f8f9d" />.
+<img width="188" height="224" alt="image" src="https://github.com/user-attachments/assets/780ec737-a0f8-434d-8b72-49bcae1344ce" />.
+<img width="274" height="232" alt="image" src="https://github.com/user-attachments/assets/b94ac7ed-f5b0-4d8f-8b3d-5dd98f17f8d4" />
 - Need to Keep track of Parent Node and make sure we do not revisit the Parent Node.
-- <img width="192" height="228" alt="image" src="https://github.com/user-attachments/assets/a27575da-0d84-4cc5-98d0-b6bb7e560655" />.
-- <img width="228" height="273" alt="image" src="https://github.com/user-attachments/assets/d743989d-2aa0-402e-b780-0f84976e960d" />.
-- <img width="263" height="265" alt="image" src="https://github.com/user-attachments/assets/6f9da392-798f-4fa7-8feb-f16bc8eb5a9d" />.
-- <img width="380" height="162" alt="image" src="https://github.com/user-attachments/assets/e043d06c-6ea4-4e37-bfde-3438b225f6a0" />.
-- <img width="179" height="105" alt="image" src="https://github.com/user-attachments/assets/ac5cf5ac-f822-4af8-b88c-046f2145094f" />.
+<img width="192" height="228" alt="image" src="https://github.com/user-attachments/assets/a27575da-0d84-4cc5-98d0-b6bb7e560655" />.
+<img width="228" height="273" alt="image" src="https://github.com/user-attachments/assets/d743989d-2aa0-402e-b780-0f84976e960d" />.
+<img width="263" height="265" alt="image" src="https://github.com/user-attachments/assets/6f9da392-798f-4fa7-8feb-f16bc8eb5a9d" />.
+<img width="380" height="162" alt="image" src="https://github.com/user-attachments/assets/e043d06c-6ea4-4e37-bfde-3438b225f6a0" />.
+<img width="179" height="105" alt="image" src="https://github.com/user-attachments/assets/ac5cf5ac-f822-4af8-b88c-046f2145094f" />.
 
 ```
 public static boolean rareRouting(int n, List<List<Integer>> roads) {
