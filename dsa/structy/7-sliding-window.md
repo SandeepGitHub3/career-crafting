@@ -363,7 +363,7 @@ Edge case handling
         start = start+1;
       }
 
-      count= count + end-start+1;
+      count= count + end-start+1; // IMP logic to increment count
       end++;
     }
     
