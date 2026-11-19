@@ -225,3 +225,33 @@ longestSubarraySum(List.of(1, 2, 1, 5, 2, 3, 10, 1, 9, 4, 3, 3, 7), 10); // -> 4
 // Time: O(n)
 // Space: O(1)
 ```
+
+### 8. ongest unique substring
+
+<img width="268" height="77" alt="image" src="https://github.com/user-attachments/assets/4fd54742-fef1-4543-8183-b223245c9609" />
+
+```
+longestUniqueSubstring("abcabcqbb"); // -> 4
+// 'abcq' is the longest substring with unique characters and its length is 4
+```
+
+```
+  public static int longestUniqueSubstring(String s) {
+    int start = 0;
+    int end = 0;
+    int maxWindow = 0;
+    Set<Character> windowChars =  new HashSet<>();
+
+    while(end < s.length()){
+      while(windowChars.contains(s.charAt(end))){
+        windowChars.remove(s.charAt(start));
+        start++;
+      }
+
+      windowChars.add(s.charAt(end));
+      maxWindow = Math.max(maxWindow,end-start+1);
+      end++;
+    }
+    return maxWindow;
+  }
+```
