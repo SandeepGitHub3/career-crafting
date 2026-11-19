@@ -158,3 +158,32 @@ countSubstringAnagrams("tacoctacabcatt", "cat"); // -> 4
 // Time: O(n*k)
 // Space: O(k)
 ```
+
+### 6. find subarray sum
+
+<img width="612" height="236" alt="image" src="https://github.com/user-attachments/assets/f80461fb-e352-4309-8ed1-453260d7d491" />. 
+
+```
+findSubarraySum(List.of(1, 2, 3, 7, 5), 12); // -> [1,3]
+// the subarray that spans indices 1 to 3 is [2,3,7] and its sum is 12
+```
+
+```
+ public static List<Integer> findSubarraySum(List<Integer> nums, int targetSum) {
+    int windowSum = 0;
+    int start = 0;
+    for (int end = 0; end < nums.size(); end += 1) {
+      windowSum += nums.get(end);
+      while (windowSum > targetSum) {
+        windowSum -= nums.get(start);
+        start += 1;
+      }
+
+      if (windowSum == targetSum) {
+        return List.of(start, end);
+      }
+    }
+    return null;
+  }
+```
+
