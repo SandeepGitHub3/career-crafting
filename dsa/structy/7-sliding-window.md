@@ -295,3 +295,36 @@ longestTwoCharSubstring("ttttttt"); // -> 0
     return maxWindowSize;
   }
 ```
+
+### 10. max ones with single flip
+
+```
+maxOnesWithSingleFlip("10110110"); // -> 5
+// flipping the second 0 will give us the longest streak of 1s
+```
+
+<img width="605" height="142" alt="image" src="https://github.com/user-attachments/assets/ff059877-9271-4683-ac62-58e86d3e745d" />
+
+```
+  public static int maxOnesWithSingleFlip(String s) {
+    int start = 0;
+    int end = 0;
+    int maxWindow = 0;
+    int zeroCount = 0;
+
+    while(end<s.length()){
+      char endChar = s.charAt(end);
+      if(endChar == '0') zeroCount++;
+
+      while(zeroCount > 1){
+        char startChar = s.charAt(start);
+        if(startChar == '0') zeroCount--;
+        start++;
+      }
+    
+      maxWindow = Math.max(maxWindow, end-start+1);
+      end++;
+    }
+    return maxWindow;
+  }
+```
