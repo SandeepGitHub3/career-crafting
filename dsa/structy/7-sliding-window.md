@@ -186,4 +186,39 @@ findSubarraySum(List.of(1, 2, 3, 7, 5), 12); // -> [1,3]
     return null;
   }
 ```
+### 7. longest subarray sum
 
+<img width="425" height="229" alt="image" src="https://github.com/user-attachments/assets/1f3e9077-8263-48cd-a4ea-ca88a2c3db67" />
+
+```
+longestSubarraySum(List.of(1, 2, 1, 5, 2, 3, 10, 1, 9, 4, 3, 3, 7), 10); // -> 4
+// the longest subarray with a sum of 10 is [2, 1, 5, 2] and its length is 4
+```
+
+```
+  public static int longestSubarraySum(List<Integer> nums, int targetSum) {
+    int windowSum = 0;
+    int maxWindowSize = -1;
+    int start = 0;
+    int end = 0;
+
+    while(end<nums.size()){
+      windowSum = windowSum + nums.get(end);
+
+      while(windowSum>targetSum){
+        windowSum = windowSum - nums.get(start);
+        start++;
+      }
+
+      if(windowSum == targetSum){
+        maxWindowSize = Math.max(maxWindowSize,end-start+1);
+      }
+
+      end++;
+    }
+    return maxWindowSize;
+  }
+// n = length of list
+// Time: O(n)
+// Space: O(1)
+```
