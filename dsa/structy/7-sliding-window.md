@@ -158,6 +158,9 @@ countSubstringAnagrams("tacoctacabcatt", "cat"); // -> 4
 // Time: O(n*k)
 // Space: O(k)
 ```
+## Sliding Window with Variiable Size
+
+<img width="614" height="420" alt="image" src="https://github.com/user-attachments/assets/e64721bc-5adf-46ed-93fc-df96be782ec4" />
 
 ### 6. find subarray sum
 
