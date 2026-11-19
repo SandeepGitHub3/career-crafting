@@ -328,3 +328,47 @@ maxOnesWithSingleFlip("10110110"); // -> 5
     return maxWindow;
   }
 ```
+### 11. count subarray product - Difficult 🔴
+
+```
+countSubarrayProduct(List.of(2, 4, 3, 10), 31); // -> 8
+// the 8 subarrays that have a product less than 31 are:
+// [2] 
+// [4] 
+// [2, 4] 
+// [3]
+// [4, 3]
+// [2, 4, 3]
+// [3, 10]
+// [10]
+```
+
+<img width="529" height="328" alt="image" src="https://github.com/user-attachments/assets/7d528444-aaef-469a-bf40-7d58c104fe3f" />
+
+Edge case handling
+<img width="651" height="302" alt="image" src="https://github.com/user-attachments/assets/b403f2ad-3d8e-4b2c-b1d3-59709fdb5023" />
+
+```
+  public static int countSubarrayProduct(List<Integer> nums, int targetProduct){
+    int count = 0;
+    int start =0;
+    int end = 0;
+    int currProduct = 1;
+
+    while(end < nums.size()){
+      currProduct = currProduct*nums.get(end);
+      
+      while(currProduct>= targetProduct && start <=end){
+        currProduct = currProduct/nums.get(start);
+        start = start+1;
+      }
+
+      count= count + end-start+1;
+      end++;
+    }
+    
+    return count;
+  }
+// Time: O(n)
+// Space: O(1)
+```
