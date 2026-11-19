@@ -255,3 +255,43 @@ longestUniqueSubstring("abcabcqbb"); // -> 4
     return maxWindow;
   }
 ```
+
+### 9. longest two char substring
+
+```
+longestTwoCharSubstring("xyzyyx"); // -> 4
+// 'yzyy' is the longest substring of 2 distinct characters and its length is 4
+```
+
+```
+longestTwoCharSubstring("ttttttt"); // -> 0
+```
+
+
+```
+  public static int longestTwoCharSubstring(String s) {
+    int start =0;
+    int end = 0;
+    int maxWindowSize = 0;
+    Map<Character,Integer> windowMap = new HashMap<>();
+
+    while(end<s.length()){
+      char endChar = s.charAt(end);
+
+      windowMap.put(endChar, windowMap.getOrDefault(endChar, 0) + 1);   // grow
+      
+      while(windowMap.size()>2){
+        char startChar = s.charAt(start);
+        int count = windowMap.get(startChar) -1;
+        if(count == 0) windowMap.remove(startChar);
+        else windowMap.put(startChar,count);
+        start++;
+      }
+      
+      if(windowMap.size() == 2)
+          maxWindowSize =  Math.max(maxWindowSize,end-start+1);
+      end++;
+    } 
+    return maxWindowSize;
+  }
+```
