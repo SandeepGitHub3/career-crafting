@@ -20,6 +20,8 @@ public static boolean isPalindrome(String s) {
     
     return true;
   }
+// Time: O(n)
+// Space: O(1)
 ```
 
 ### 2. uncompress
