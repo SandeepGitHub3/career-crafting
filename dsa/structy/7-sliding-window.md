@@ -421,3 +421,48 @@ countSubstringAtMostKDistinct("gattc", 3); // -> 14
 // Space: O(k)
 ```
 
+### 13. count substring exactly k distinct - Difficult 🔴
+```
+countSubstringExactlyKDistinct("gattc", 3); // -> 3
+// there are 3 substrings that consist of 3 distinct chars:
+//  gat
+//  gatt
+//  attc   
+```
+
+Our usual approach does not work here because we will miss out on some cases
+<img width="564" height="348" alt="image" src="https://github.com/user-attachments/assets/91906de7-4be8-48ca-b6e1-8006b16c650f" />. 
+<img width="512" height="208" alt="image" src="https://github.com/user-attachments/assets/41c2710a-5a28-4fa5-a500-2293a77222ad" />. 
+<img width="333" height="48" alt="image" src="https://github.com/user-attachments/assets/5548f113-598f-4919-b84f-8c4606842386" />. 
+<img width="327" height="101" alt="image" src="https://github.com/user-attachments/assets/9953d85d-5969-4a92-9462-0390021f5d31" />. 
+
+```
+  public static int countSubstringExactlyKDistinct(String s, int k) {
+    return atMost(s, k) - atMost(s, k - 1);
+  }
+  
+  private static int atMost(String s, int k) {
+    int start = 0;
+    int end = 0;
+    int count = 0;
+    Map<Character,Integer> windowchars = new HashMap<>();
+
+    while(end < s.length()){
+      Character endChar = s.charAt(end);
+      windowchars.put(endChar,windowchars.getOrDefault(endChar,0)+1);
+      
+      while(windowchars.size() > k){
+         Character startChar = s.charAt(start);
+         windowchars.put(startChar,windowchars.get(startChar)-1);
+         if(windowchars.get(startChar) == 0) windowchars.remove(startChar);
+         start++;
+      }
+
+      count = count + end-start+1;
+      end++;
+    }
+    return count;
+  }
+// Time: O(n)
+// Space: O(k)
+```
