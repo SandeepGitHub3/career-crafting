@@ -49,6 +49,10 @@ public static boolean isPalindrome(String s) {
     }
     return uncompressedString.toString();
   }
+// n = number of groups
+// m = max num found in any group
+// Time: O(n*m)
+// Space: O(n*m)
 ```
 
 ### 3. compress
@@ -88,4 +92,35 @@ Source.compress("ccaaatsss"); // -> "2c3at3s"
     
     return result.toString();
   }
+// Time: O(n)
+// Space: O(n)
+```
+
+### 4. five sort
+IMP: Need to update the array in place.
+
+```
+List<Integer> array = new ArrayList<>(List.of(12, 5, 1, 5, 12, 7));
+Source.fiveSort(array);
+// -> [12, 7, 1, 12, 5, 5] 
+```
+
+```
+  public static List<Integer> fiveSort(List<Integer> array) {
+    int start =0;
+    int end =array.size()-1;
+
+    while(start<end){
+      while(array.get(end) == 5) end--;
+      if(array.get(start) == 5){
+        array.set(start,array.get(end));
+        array.set(end,5);
+        end--;
+      }
+      start++;
+    }
+    return array;
+  }
+// Time: O(n)
+// Space: O(1)
 ```
