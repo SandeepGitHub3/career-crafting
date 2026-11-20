@@ -372,3 +372,52 @@ Edge case handling
 // Time: O(n)
 // Space: O(1)
 ```
+
+### 12. count substring at most k distinct
+
+```
+countSubstringAtMostKDistinct("gattc", 3); // -> 14
+// there are 14 substrings that consist of at most 3 distinct chars:
+//   gatt
+//   attc
+//   gat
+//   att
+//   ttc
+//   ga
+//   at
+//   tt
+//   tc
+//   g
+//   a
+//   t
+//   t
+//   c
+```
+
+<img width="469" height=". 75" alt="image" src="https://github.com/user-attachments/assets/4cd21be2-8730-4bea-a639-ce7136871cae" /> 
+```
+  public static int countSubstringAtMostKDistinct(String s, int k) {
+    int start = 0;
+    int end = 0;
+    int count = 0;
+    Map<Character,Integer> windowchars = new HashMap<>();
+
+    while(end < s.length()){
+      Character endChar = s.charAt(end);
+      while(!windowchars.containsKey(endChar) && windowchars.size() >= k && start<end){
+         Character startChar = s.charAt(start);
+         windowchars.put(startChar,windowchars.get(startChar)-1);
+         if(windowchars.get(startChar) == 0) windowchars.remove(startChar);
+         start++;
+      }
+
+      windowchars.put(endChar,windowchars.getOrDefault(endChar,0)+1);
+      count = count + end-start+1;
+      end++;
+    }
+    return count;
+  }
+// Time: O(n)
+// Space: O(k)
+```
+
