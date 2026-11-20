@@ -126,3 +126,33 @@ Source.fiveSort(array);
 // Time: O(n)
 // Space: O(1)
 ```
+
+### 5. is subsequence
+
+```
+isSubsequence("bde", "abcdef"); // -> true
+isSubsequence("bda", "abcdef"); // -> false
+```
+
+```
+  public static boolean isSubsequence(String string1, String string2) {
+    int i1 = 0;
+    int i2 = 0;
+
+    while(i1<string1.length() && i2<string2.length()){
+      if(string1.charAt(i1) == string2.charAt(i2)){
+        i1++;
+        i2++;
+      }else{
+        i2++;
+      }
+    }
+
+    if(i1 == string1.length()) return true;
+    return false;
+  }
+// n = length of string1
+// m = length of string2
+// Time: O(m)
+// Space: O(1)
+```
