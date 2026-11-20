@@ -50,3 +50,42 @@ public static boolean isPalindrome(String s) {
     return uncompressedString.toString();
   }
 ```
+
+### 3. compress
+```
+'aaa' compresses to '3a'
+'cc' compresses to '2c'
+'t' should remain as 't'
+
+Source.compress("ccaaatsss"); // -> "2c3at3s"
+```
+
+<img width="519" height="354" alt="image" src="https://github.com/user-attachments/assets/a9d8fa8c-d4eb-4d9c-a5bc-ce182d21f282" />. 
+
+```
+  public static String compress(String s) {
+    int start = 0;
+    int end = 0;
+    Character c = s.charAt(0);
+    StringBuilder result = new StringBuilder();
+    int num = 0;
+    
+    while(end<s.length()){
+      Character endChar = s.charAt(end);
+      if(c != endChar){
+          num = end-start;
+        if(num>1 ) result.append(String.valueOf(num));
+        result.append(String.valueOf(c));
+        start = end;
+        c = endChar;
+      }
+      end++;
+    }
+
+    num = end-start;
+    if(num>1 ) result.append(String.valueOf(num));
+    result.append(String.valueOf(c));
+    
+    return result.toString();
+  }
+```
