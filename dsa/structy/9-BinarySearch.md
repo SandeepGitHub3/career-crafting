@@ -142,4 +142,81 @@ public static int countInSortedArray(List<Integer> nums, int target) {
   }
 ```
 
+### 6. min in rotated sorted array - Difficult : 🔴
+
+```
+minInRotatedSortedArray(List.of(6,7,9,10,2,3,4,5)); // -> 2
+// the original array was [2,3,4,5,6,7,9,10] and was rotated 4 times
+```
+
+<img width="726" height="351" alt="image" src="https://github.com/user-attachments/assets/48e304b4-c51c-470d-889f-d41bf074e84d" />. 
+<img width="680" height="303" alt="image" src="https://github.com/user-attachments/assets/fed984bd-8e3e-4ac3-8842-a43f2255bd37" />. 
+
+```
+  public static int minInRotatedSortedArray(List<Integer> nums) {
+    int start = 0 ;
+    int end = nums.size()-1;
+
+    while(start<end){
+      int mid = start + (end-start)/2;
+      if(nums.get(mid)<nums.get(end)) 
+        end = mid;
+      else
+        start = mid+1;
+    }
+    
+    return nums.get(start);
+  }
+```
+
+### 7. find in rotated sorted array - Difficult : 🔴
+```
+findInRotatedSortedArray(List.of(5,6,7,9,2,3,4), 7); // -> 2
+// the original array was [2,3,4,5,6,7,9] and was rotated 4 times
+```
+
+- Find the inflection Point and then split the Original Array into 2 sorted arrays.
+- Then Do binary search on both the arrays.
+
+<img width="622" height="317" alt="image" src="https://github.com/user-attachments/assets/c142d2d4-d0b7-4050-a346-68b5738d2d2f" />. 
+
+```
+public static int findInRotatedSortedArray(List<Integer> nums, int target) {
+    int inflectionPoint = findMinIndex(nums);
+    int leftResult = binarySearch(nums,target,0,inflectionPoint-1);
+    int rightResult = binarySearch(nums,target,inflectionPoint,nums.size()-1);
+    if (leftResult == -1) {
+      return rightResult;
+    } else {
+      return leftResult;
+    }
+  }
+
+  private static int binarySearch(List<Integer> nums, int target, int start, int end){
+    while(start<=end){
+      int mid = start + (end-start)/2;
+      if(nums.get(mid) == target) return mid;
+      if(nums.get(mid) > target) 
+        end = mid-1;
+      else 
+        start = mid+1;
+    }
+
+    return -1;
+  }
+  private static int findMinIndex(List<Integer> nums) {
+    int start = 0 ;
+    int end = nums.size()-1;
+
+    while(start<end){
+      int mid = start + (end-start)/2;
+      if(nums.get(mid)<nums.get(end)) 
+        end = mid;
+      else
+        start = mid+1;
+    }
+    
+    return start;
+  }
+```
 
