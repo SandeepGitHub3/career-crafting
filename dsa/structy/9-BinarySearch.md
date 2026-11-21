@@ -220,3 +220,29 @@ public static int findInRotatedSortedArray(List<Integer> nums, int target) {
   }
 ```
 
+### 8 . find peak : Difficult 🔴
+- return the index of a "peak" element. A "peak" is an element that is greater than both of its adjacent neighbors.
+- first and last elements of the List only need to be greater than their single neighbor to be considered a "peak".
+- solution should have a time complexity of O(logn).
+
+<img width="704" height="342" alt="image" src="https://github.com/user-attachments/assets/c4470f16-0cff-43f7-a0e8-45cc824ecc32" />. 
+<img width="670" height="215" alt="image" src="https://github.com/user-attachments/assets/b44d75b9-eb83-4972-8b1d-929ec6e699e7" />. 
+<img width="328" height="252" alt="image" src="https://github.com/user-attachments/assets/08e32dec-a963-426f-8950-0e5ac426da76" />
+
+```
+  public static int findPeak(List<Integer> nums) {
+    int lo = 0;
+    int hi = nums.size() - 1;
+    while (lo < hi) {
+      int mid = (lo + hi) / 2;
+      if (nums.get(mid) < nums.get(mid + 1)) {
+        lo = mid + 1;
+      } else {
+        hi = mid;
+      }
+    }
+    return lo;
+  }
+```
+  
+
