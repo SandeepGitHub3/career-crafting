@@ -67,3 +67,79 @@ binarySearchIndex(List.of(0, 6, 8, 12, 16, 19, 20, 24, 28), 27); // -> 8
   }
 ```
 
+### 4. find leftmost index
+
+<img width="597" height="248" alt="image" src="https://github.com/user-attachments/assets/7acdc243-b49f-4123-8490-f2613f0131da" />
+
+```
+  public static int findLeftmostIndex(List<Integer> nums, int target) {
+    int start = 0;
+    int end = nums.size()-1;
+    int result = -1;
+
+    while(start<=end){
+      int mid = start+(end-start)/2;
+      int midEle = nums.get(mid);
+      if(midEle > target) end = mid - 1;
+      if(midEle < target) start = mid + 1;
+      if(midEle == target){
+        result = mid; // remember it
+        end = mid-1; // but keep looking left
+      }
+    }
+    return result;
+  }
+```
+
+### 5. count in sorted array
+
+```countInSortedArray(List.of(1,2,3,3,3,3,3,4,5,6,6,7,8,8,8,9), 3); // -> 5```. 
+
+<img width="679" height="385" alt="image" src="https://github.com/user-attachments/assets/6a5a8384-039c-421c-ab5b-a33f9ea8df91" />. 
+
+```
+public static int countInSortedArray(List<Integer> nums, int target) {
+    int leftMostIndex = findLeftMostIndex(nums,target);
+    if (leftMostIndex == -1) return 0;
+    int rightMostIndex = findRightMostIndex(nums,target);
+    return rightMostIndex-leftMostIndex +1;
+  }
+
+  private static int findLeftMostIndex(List<Integer> nums, int target){
+    int start = 0;
+    int end = nums.size()-1;
+    int index = -1;
+
+    while(start<=end){
+      int mid = start+(end-start)/2;
+      int midEle = nums.get(mid);
+      if(midEle > target) end = mid - 1;
+      if(midEle < target) start = mid + 1;
+      if(midEle == target){
+        index = mid;
+        end = mid-1; //keep looking left
+      }
+    }
+    return index;
+  }
+
+  private static int findRightMostIndex(List<Integer> nums, int target){
+    int start = 0;
+    int end = nums.size()-1;
+    int index = -1;
+
+    while(start<=end){
+      int mid = start+(end-start)/2;
+      int midEle = nums.get(mid);
+      if(midEle > target) end = mid - 1;
+      if(midEle < target) start = mid + 1;
+      if(midEle == target){
+        index = mid;
+        start = mid+1; // keep looking right
+      }
+    }
+    return index;
+  }
+```
+
+
